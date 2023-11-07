@@ -1,0 +1,23 @@
+name: Checkmarx Security Scan
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    
+jobs:
+  build:
+    name: Checkmarx Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkmarx - Scan Execution (Results)
+        uses: checkmarx/ast-github-action@main
+        with:
+          project_name: ${{ github.repository }}
+          cx_tenant: ${{ secrets.CX_TENANT_ID }}
+          base_uri:  ${{ secrets.CX_BASE_URI }}
+          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+          additional_params: ${{ vars.CX_ADDITIONAL_PARAMETERS }}
