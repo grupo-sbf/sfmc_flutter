@@ -24,4 +24,4 @@ jobs:
           base_uri:  ${{ secrets.CX_BASE_URI }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
-          changed_files: ${{ steps.changedfiles.outputs.all }}
+          changed_files: ${{ steps.changedfiles.outputs.all_changed_files }}
